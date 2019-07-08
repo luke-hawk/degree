@@ -20,14 +20,8 @@ defmodule DegreeWeb.Router do
     plug(Coherence.Authentication.Session, protected: true)
   end
 
-  scope "/admin" do
-    pipe_through(:browser)
-    coherence_routes()
-  end
-
-  scope "/admin" do
-    pipe_through(:protected)
-    coherence_routes(:protected)
+  pipeline :admin_layout do
+    plug :put_layout, { DegreeWeb.LayoutView, :admin }
   end
 
   # PUBLIC ROUTES
@@ -37,8 +31,22 @@ defmodule DegreeWeb.Router do
     get "/", PageController, :index
   end
 
+  # PUBLIC ADMIN ROUTES 
+  scope "/admin" do
+    pipe_through([:browser, :admin_layout])
+    coherence_routes()
+  end
+
+  # PROTECTED ADMIN ROUTES 
+  scope "/admin" do
+    pipe_through([:protected, :admin_layout])
+    coherence_routes(:protected)
+  end
+
   # PROTECTED ROUTES
   scope "/admin", DegreeWeb do
-    pipe_through(:protected)
+    pipe_through([:protected, :admin_layout])
+
+    get "/", AdminController, :index
   end
 end

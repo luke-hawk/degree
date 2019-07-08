@@ -54,7 +54,8 @@ config :coherence,
   session_permitted_attributes: ["remember", "email", "password"],
   email_from_name: "Lucas",
   email_from_email: "info@degree-cms.com",
-  opts: [:authenticatable, :invitable]
+  opts: [:authenticatable, :invitable],
+  layout: { DegreeWeb.LayoutView, :admin }
 
 config :coherence, DegreeWeb.Coherence.Mailer,
   adapter: Swoosh.Adapters.Sendgrid,
