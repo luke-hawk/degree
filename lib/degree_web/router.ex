@@ -20,10 +20,6 @@ defmodule DegreeWeb.Router do
     plug(Coherence.Authentication.Session, protected: true)
   end
 
-  pipeline :api do
-    plug :accepts, ["json"]
-  end
-
   scope "/admin" do
     pipe_through(:browser)
     coherence_routes()
@@ -45,9 +41,4 @@ defmodule DegreeWeb.Router do
   scope "/admin", DegreeWeb do
     pipe_through(:protected)
   end
-
-  # Other scopes may use custom stacks.
-  # scope "/api", DegreeWeb do
-  #   pipe_through :api
-  # end
 end
