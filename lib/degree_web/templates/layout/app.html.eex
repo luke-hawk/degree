@@ -7,24 +7,32 @@
     <title>Degree · CMS</title>
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
   </head>
+
   <body>
     <header>
-      <section class="container">
-        <nav role="navigation">
-          <ul>
-            <%= if Coherence.logged_in?(@conn) do %>
-              <li><%= Coherence.current_user_name(@conn) %></li>
-              <li><%= link("Logout", to: "/admin/sessions", method: :delete) %></li>
-            <% else %>
-              <li><%= link("Login", to: "/admin/sessions/new") %></li>
-            <% end %>
-          </ul>
+      <section>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <a class="navbar-brand" href="/">Degree</a>
+          <%= if Coherence.logged_in?(@conn) do %>
+            <span class="navbar-text ml-auto">
+              <%= Coherence.current_user_name(@conn) %>
+            </span>
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <%= link("Logout", to: "/admin/sessions", method: :delete, class: "nav-link") %>
+              </li>
+            </ul>
+          <% else %>
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <%= link("Login", to: "/admin/sessions/new", class: "nav-link") %>
+              </li>
+            </ul>
+          <% end %>
         </nav>
       </section>
     </header>
     <main role="main" class="container">
-      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
       <%= render @view_module, @view_template, assigns %>
     </main>
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
