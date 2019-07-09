@@ -43,12 +43,12 @@
             <h6 class="navbar-heading text-muted mt-3">Users</h6>
             <ul class="navbar-nav mb-md-3">
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="/admin/user">
                   <i class="fas fa-users"></i> Manage
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="/admin/invitations/new">
                   <i class="fas fa-address-book"></i> Invite
                 </a>
               </li>
