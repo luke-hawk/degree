@@ -6,35 +6,122 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Degree · CMS</title>
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
+    <script src="https://kit.fontawesome.com/77eb306280.js"></script>
   </head>
 
-  <body>
-    <header>
-      <section>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <a class="navbar-brand" href="/">Degree</a>
-          <%= if Coherence.logged_in?(@conn) do %>
-            <span class="navbar-text ml-auto">
-              <%= Coherence.current_user_name(@conn) %>
-            </span>
-            <ul class="navbar-nav ml-auto">
+  <body class="bg-gradient-primary">
+    <%= if Coherence.logged_in?(@conn) do %>
+      <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white pt-4" id="sidenav-main">
+        <div class="container-fluid">
+          <!-- Toggler -->
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <!-- Brand -->
+          <a class="navbar-brand pt-0" href="/">
+            Degree
+          </a>
+          <!-- Collapse -->
+          <div class="collapse navbar-collapse" id="sidenav-collapse-main">
+            <!-- Collapse header -->
+            <div class="navbar-collapse-header d-md-none">
+              <div class="row">
+                <div class="col-6 collapse-brand">
+                  <a href="/">
+                    Degree
+                  </a>
+                </div>
+                <div class="col-6 collapse-close">
+                  <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle sidenav">
+                    <span></span>
+                    <span></span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- Navigation -->
+            <h6 class="navbar-heading text-muted mt-3">Users</h6>
+            <ul class="navbar-nav mb-md-3">
               <li class="nav-item">
-                <%= link("Logout", to: "/admin/sessions", method: :delete, class: "nav-link") %>
+                <a class="nav-link" href="#">
+                  <i class="fas fa-users"></i> Manage
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <i class="fas fa-address-book"></i> Invite
+                </a>
               </li>
             </ul>
-          <% else %>
-            <ul class="navbar-nav ml-auto">
+            <hr class="my-3">
+            <h6 class="navbar-heading text-muted">Pages</h6>
+            <ul class="navbar-nav mb-md-3">
               <li class="nav-item">
-                <%= link("Login", to: "/admin/sessions/new", class: "nav-link") %>
+                <a class="nav-link" href="#">
+                  <i class="fas fa-file-invoice"></i> Manage
+                </a>
               </li>
             </ul>
-          <% end %>
+            <hr class="my-3">
+            <h6 class="navbar-heading text-muted">Documentation</h6>
+            <ul class="navbar-nav mb-md-3">
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <i class="fas fa-book"></i> Degree CMS
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <i class="fas fa-book"></i> Adding Pages
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <i class="fas fa-book"></i> Changing Content
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div class="main-content">
+        <!-- Navbar -->
+        <nav class="navbar navbar-top navbar-expand-md navbar-dark pt-3" id="navbar-main">
+          <div class="container-fluid">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <%= link(to: "/admin/sessions", method: :delete, class: "nav-link nav-link-icon") do %>
+                  <i class="fas fa-sign-out-alt"></i>
+                  <span class="nav-link-inner--text">Logout</span>
+                <% end %>
+              </li>
+            </ul>
+          </div>
         </nav>
-      </section>
-    </header>
-    <main role="main" class="container">
-      <%= render @view_module, @view_template, assigns %>
-    </main>
+        <!-- End Navbar -->
+        <!-- Content -->
+        <div class="pb-8 pt-5 pt-md-8 h-100">
+          <div class="container-fluid">
+              <div class="row text-center">
+                <div class="col-sm-12 mt-5">
+                  <%= render @view_module, @view_template, assigns %>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    <% else %>
+    <!-- Content -->
+      <div class="pb-8 pt-5 pt-md-8 h-100">
+        <div class="container-fluid">
+          <div class="row text-center">
+            <div class="col-sm-12 col-lg-6 offset-lg-3 mt-5">
+              <%= render @view_module, @view_template, assigns %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>
