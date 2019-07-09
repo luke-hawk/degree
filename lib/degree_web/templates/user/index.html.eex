@@ -16,7 +16,7 @@
             </tr>
           </thead>
           <tbody>
-  			    <%= for {user, index} <- Enum.with_index(@users) do %>
+  			    <%= for {user, _index} <- Enum.with_index(@users) do %>
               <tr>
                 <td>
                 	<%= user.id %>

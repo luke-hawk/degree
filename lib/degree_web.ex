@@ -24,6 +24,8 @@ defmodule DegreeWeb do
       import Plug.Conn
       import DegreeWeb.Gettext
       alias DegreeWeb.Router.Helpers, as: Routes
+
+      use Thesis.Controller
     end
   end
 
@@ -42,6 +44,8 @@ defmodule DegreeWeb do
       import DegreeWeb.ErrorHelpers
       import DegreeWeb.Gettext
       alias DegreeWeb.Router.Helpers, as: Routes
+
+      use Thesis.View
     end
   end
 
@@ -50,6 +54,8 @@ defmodule DegreeWeb do
       use Phoenix.Router
       import Plug.Conn
       import Phoenix.Controller
+
+      use Thesis.Router
     end
   end
 
