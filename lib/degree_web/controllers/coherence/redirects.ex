@@ -43,11 +43,11 @@ defmodule Coherence.Redirects do
   """
   use Redirects
   # Uncomment the import below if adding overrides
-  # import DegreeWeb.Router.Helpers
+  import DegreeWeb.Router.Helpers
 
   # Add function overrides below
 
   # Example usage
   # Uncomment the following line to return the user to the login form after logging out
-  # def session_delete(conn, _), do: redirect(conn, to: session_path(conn, :new))
+  def session_delete(conn, _), do: redirect(conn, to: page_path(conn, :index))
 end
