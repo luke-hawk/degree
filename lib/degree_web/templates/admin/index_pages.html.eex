@@ -1,0 +1,56 @@
+<div class="row">
+  <div class="col">
+    <div class="card shadow">
+      <div class="card-header border-0">
+        <h3 class="mb-0">Pages</h3>
+      </div>
+      <div class="table-responsive">
+        <table class="table align-items-center table-flush">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">Title</th>
+              <th scope="col">Used Template</th>
+              <th scope="col">Slug</th>
+              <th scope="col">Link</th>
+              <th scope="col">Last Update</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+  			<%= for {route, _index} <- Enum.with_index(@routes) do %>
+  			    <% url = DegreeWeb.Endpoint.url <> route.slug %>
+              	<tr>
+	                <td>
+	                  <%= route.title %>
+	                </td>
+                  <td>
+                    <%= route.template %>
+                  </td>
+	                <td>
+	                  <%= route.slug %>
+	                </td>
+	                <td>
+	                  <a href="<%= url %>">Visit</a>
+	                </td>
+	                <td>
+	                  <%= route.updated_at %>
+	                </td>
+	                <td class="text-right">
+	                  <div class="btn-group" role="group" aria-label="Basic example">
+	                  	<%= link("Edit", to: url, class: "btn btn-secondary btn-xs") %>
+						<%= if route.template do %>
+	                  		<%= link "Delete", to: Routes.admin_path(@conn, :delete_page, route), method: :delete, class: "btn btn-secondary btn-xs" %>
+	                  	<% end %>
+	                  </div>
+	                </td>
+              	</tr>
+  	        <% end %>
+          </tbody>
+        </table>
+      </div>
+      <div class="card-footer py-4">
+        <%= link "New Page", to: "/", class: "btn btn-default btn-xs" %>
+      </div>
+    </div>
+  </div>
+</div>
