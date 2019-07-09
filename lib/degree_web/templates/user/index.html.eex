@@ -44,7 +44,7 @@
         </table>
       </div>
       <div class="card-footer py-4">
-        <%= link "New User", to: Routes.user_path(@conn, :new), class: "btn btn-secondary btn-xs" %>
+        <%= link "New User", to: Routes.user_path(@conn, :new), class: "btn btn-default btn-xs" %>
       </div>
     </div>
   </div>

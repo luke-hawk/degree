@@ -8,7 +8,7 @@
           <div class="form-group mt-5 mb-3">
             <div class="input-group input-group-alternative">
               <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                <span class="input-group-text"><i class="fas fa-at"></i></span>
               </div>
               <%= text_input f, login_field, class: "form-control pl-3", placeholder: "Email", required: "" %>
             </div>

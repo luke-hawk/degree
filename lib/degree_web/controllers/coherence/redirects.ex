@@ -49,4 +49,5 @@ defmodule Coherence.Redirects do
 
   def session_delete(conn, _), do: redirect(conn, to: page_path(conn, :index))
   def invitation_create(conn, _), do: redirect(conn, to: admin_path(conn, :index))
+  def invitation_edit(conn, _), do: redirect(conn, to: admin_path(conn, :index))
 end

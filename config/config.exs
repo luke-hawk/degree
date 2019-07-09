@@ -60,6 +60,6 @@ config :coherence,
 
 config :coherence, DegreeWeb.Coherence.Mailer,
   adapter: Swoosh.Adapters.Sendgrid,
-  api_key: "your api key here"
+  api_key: "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"
 
 # %% End Coherence Configuration %%
