@@ -63,3 +63,25 @@ config :coherence, DegreeWeb.Coherence.Mailer,
   api_key: "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"
 
 # %% End Coherence Configuration %%
+# Thesis Main Config
+config :thesis,
+  store: Thesis.EctoStore,
+  authorization: Degree.ThesisAuth,
+  uploader: Thesis.RepoUploader
+
+config :thesis, :dynamic_pages,
+  view: DegreeWeb.PageView,
+  templates: ["blog.html"],
+  not_found_view: DegreeWeb.ErrorView,
+  not_found_template: "404.html"
+
+# Thesis Store Config
+config :thesis, Thesis.EctoStore, repo: Degree.Repo
+
+# Thesis Notifications Config
+# config :thesis, :notifications,
+#   add_page: [],
+#   page_settings: [],
+#   import_export_restore: []
+
+

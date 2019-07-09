@@ -24,13 +24,6 @@ defmodule DegreeWeb.Router do
     plug :put_layout, { DegreeWeb.LayoutView, :admin }
   end
 
-  # PUBLIC ROUTES
-  scope "/", DegreeWeb do
-    pipe_through :browser
-
-    get "/", PageController, :index
-  end
-
   # PUBLIC ADMIN ROUTES 
   scope "/admin" do
     pipe_through([:browser, :admin_layout])
@@ -49,5 +42,13 @@ defmodule DegreeWeb.Router do
 
     get "/", AdminController, :index
     resources "/user", UserController, except: [:show]
+  end
+
+  # PUBLIC ROUTES
+  scope "/", DegreeWeb do
+    pipe_through :browser
+
+    get "/", PageController, :index
+    get "/*path", PageController, :dynamic
   end
 end
