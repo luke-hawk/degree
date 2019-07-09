@@ -48,5 +48,6 @@ defmodule DegreeWeb.Router do
     pipe_through([:protected, :admin_layout])
 
     get "/", AdminController, :index
+    resources "/user", UserController, except: [:show]
   end
 end

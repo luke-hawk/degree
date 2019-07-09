@@ -51,6 +51,7 @@ config :coherence,
     "password",
     "password_confirmation"
   ],
+  require_current_password: false,
   session_permitted_attributes: ["remember", "email", "password"],
   email_from_name: "Lucas",
   email_from_email: "info@degree-cms.com",
