@@ -1,3 +1,3 @@
-defmodule DegreeWeb.UserView do
+defmodule DegreeWeb.Admin.UserView do
   use DegreeWeb, :view
 end

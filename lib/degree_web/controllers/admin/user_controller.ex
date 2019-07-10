@@ -1,4 +1,4 @@
-defmodule DegreeWeb.UserController do
+defmodule DegreeWeb.Admin.UserController do
   use DegreeWeb, :controller
 
   alias Degree.Repo
