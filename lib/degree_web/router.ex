@@ -43,7 +43,7 @@ defmodule DegreeWeb.Router do
     get "/", AdminController, :index
     get "/pages", AdminController, :index_pages
     delete "/pages/:route_id", AdminController, :delete_page
-    resources "/user", UserController, except: [:show]
+    resources "/user", Admin.UserController, except: [:show]
   end
 
   # PUBLIC ROUTES
