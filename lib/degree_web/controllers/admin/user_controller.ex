@@ -2,7 +2,7 @@ defmodule DegreeWeb.Admin.UserController do
   use DegreeWeb, :controller
 
   alias Degree.Repo
-  alias Degree.Coherence.User
+  alias Degree.User
 
   def index(conn, _params) do
     users = User |> Repo.all
@@ -15,7 +15,7 @@ defmodule DegreeWeb.Admin.UserController do
   end
 
   def create(conn, %{"user" => user_params}) do
-    changeset = User.changeset(%User{}, user_params)
+    changeset = User.registration_changeset(%User{}, user_params)
 
     if changeset.valid? do
       Repo.insert(changeset)

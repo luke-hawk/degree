@@ -1,6 +1,5 @@
 defmodule DegreeWeb.Router do
   use DegreeWeb, :router
-  use Coherence.Router
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -8,7 +7,6 @@ defmodule DegreeWeb.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
-    plug(Coherence.Authentication.Session)
   end
 
   pipeline :api do
@@ -21,23 +19,11 @@ defmodule DegreeWeb.Router do
     plug(:fetch_flash)
     plug(:protect_from_forgery)
     plug(:put_secure_browser_headers)
-    plug(Coherence.Authentication.Session, protected: true)
+    # auth plug
   end
 
   pipeline :admin_layout do
     plug :put_layout, { DegreeWeb.LayoutView, :admin }
-  end
-
-  # PUBLIC ADMIN ROUTES 
-  scope "/admin" do
-    pipe_through([:browser, :admin_layout])
-    coherence_routes()
-  end
-
-  # PROTECTED ADMIN ROUTES 
-  scope "/admin" do
-    pipe_through([:protected, :admin_layout])
-    coherence_routes(:protected)
   end
 
   # PROTECTED ROUTES

@@ -1,7 +1,7 @@
-Degree.Repo.delete_all(Degree.Coherence.User)
+Degree.Repo.delete_all(Degree.User)
 
-%Degree.Coherence.User{}
-|> Degree.Coherence.User.changeset(%{
+%Degree.User{}
+|> Degree.User.changeset(%{
   name: "Admin",
   email: "admin@admin.com",
   role: "admin"
