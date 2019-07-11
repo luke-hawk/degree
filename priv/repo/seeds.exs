@@ -1,10 +1,10 @@
-Degree.Repo.delete_all(Degree.User)
+Degree.Repo.delete_all(Degree.Accounts.User)
 
-%Degree.User{}
-|> Degree.User.changeset(%{
+%Degree.Accounts.User{}
+|> Degree.User.registration_changeset(%{
   name: "Admin",
   email: "admin@admin.com",
-  role: "admin"
+  role: "admin",
   password: "secret",
   password_confirmation: "secret"
 })

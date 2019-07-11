@@ -13,6 +13,10 @@ defmodule DegreeWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :auth do
+    plug(Degree.Auth.AuthAccessPipeline)
+  end
+
   pipeline :protected do
     plug(:accepts, ["html"])
     plug(:fetch_session)
@@ -26,14 +30,22 @@ defmodule DegreeWeb.Router do
     plug :put_layout, { DegreeWeb.LayoutView, :admin }
   end
 
-  # PROTECTED ROUTES
+  # PROTECTED ADMIN ROUTES
   scope "/admin", DegreeWeb do
-    pipe_through([:protected, :admin_layout])
+    pipe_through([:protected, :auth, :admin_layout])
 
     get "/", AdminController, :index
     get "/pages", AdminController, :index_pages
     delete "/pages/:route_id", AdminController, :delete_page
     resources "/user", Admin.UserController, except: [:show]
+    delete "/sessions", SessionController, :delete
+  end
+
+  # PUBLIC ADMIN ROUTES
+  scope "/admin", DegreeWeb do
+    pipe_through([:protected, :admin_layout])
+
+    resources("/sessions", SessionController, only: [:new, :create])
   end
 
   # PUBLIC ROUTES
