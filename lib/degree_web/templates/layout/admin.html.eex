@@ -10,7 +10,7 @@
   </head>
 
   <body class="bg-gradient-primary">
-    <%= if true do %>
+    <%= if Guardian.Plug.current_resource(@conn) do %>
       <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white pt-4" id="sidenav-main">
         <div class="container-fluid">
           <!-- Toggler -->
@@ -40,7 +40,7 @@
               </div>
             </div>
             <!-- Navigation -->
-            <%= if true do %>
+            <%= if Guardian.Plug.current_resource(@conn).role == "admin" do %>
               <h6 class="navbar-heading text-muted mt-3">Users</h6>
               <ul class="navbar-nav mb-md-3">
                 <li class="nav-item">
