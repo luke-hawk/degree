@@ -1,4 +1,4 @@
-defmodule Degree.Auth.AuthErrorHandler do
+defmodule Degree.Auth.ErrorHandler do
   @moduledoc false
 
   import Plug.Conn
