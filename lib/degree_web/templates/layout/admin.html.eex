@@ -10,7 +10,7 @@
   </head>
 
   <body class="bg-gradient-primary">
-    <%= if Coherence.logged_in?(@conn) do %>
+    <%= if true do %>
       <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white pt-4" id="sidenav-main">
         <div class="container-fluid">
           <!-- Toggler -->
@@ -46,11 +46,6 @@
                 <li class="nav-item">
                   <a class="nav-link" href="/admin/user">
                     <i class="fas fa-users"></i> Manage
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/admin/invitations/new">
-                    <i class="fas fa-address-book"></i> Invite
                   </a>
                 </li>
               </ul>

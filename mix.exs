@@ -20,7 +20,7 @@ defmodule Degree.MixProject do
   def application do
     [
       mod: {Degree.Application, []},
-      extra_applications: [:logger, :runtime_tools, :coherence, :thesis]
+      extra_applications: [:logger, :runtime_tools, :thesis]
     ]
   end
 
@@ -43,7 +43,7 @@ defmodule Degree.MixProject do
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
-      {:coherence, github: "appprova/coherence"},
+      {:argon2_elixir, "~> 2.0"},
       {:thesis, "~> 0.3.4"}
     ]
   end

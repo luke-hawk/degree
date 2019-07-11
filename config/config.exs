@@ -29,40 +29,6 @@ config :phoenix, :json_library, Jason
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"
 
-# %% Coherence Configuration %%   Don't remove this line
-config :coherence,
-  user_schema: Degree.Coherence.User,
-  repo: Degree.Repo,
-  module: Degree,
-  web_module: DegreeWeb,
-  router: DegreeWeb.Router,
-  password_hashing_alg: Comeonin.Bcrypt,
-  messages_backend: DegreeWeb.Coherence.Messages,
-  registration_permitted_attributes: [
-    "email",
-    "name",
-    "password",
-    "current_password",
-    "password_confirmation"
-  ],
-  invitation_permitted_attributes: ["name", "email"],
-  password_reset_permitted_attributes: [
-    "reset_password_token",
-    "password",
-    "password_confirmation"
-  ],
-  require_current_password: false,
-  session_permitted_attributes: ["remember", "email", "password"],
-  email_from_name: "Lucas",
-  email_from_email: "info@degree-cms.com",
-  opts: [:authenticatable, :invitable],
-  layout: { DegreeWeb.LayoutView, :admin }
-
-config :coherence, DegreeWeb.Coherence.Mailer,
-  adapter: Swoosh.Adapters.Sendgrid,
-  api_key: "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"
-
-# %% End Coherence Configuration %%
 # Thesis Main Config
 config :thesis,
   store: Thesis.EctoStore,
