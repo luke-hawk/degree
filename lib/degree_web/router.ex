@@ -13,17 +13,12 @@ defmodule DegreeWeb.Router do
     plug :accepts, ["json"]
   end
 
-  pipeline :auth do
-    plug(Degree.Auth.AuthAccessPipeline)
+  pipeline :guard do
+    plug Degree.Auth.Pipeline
   end
 
   pipeline :protected do
-    plug(:accepts, ["html"])
-    plug(:fetch_session)
-    plug(:fetch_flash)
-    plug(:protect_from_forgery)
-    plug(:put_secure_browser_headers)
-    # auth plug
+    plug Guardian.Plug.EnsureAuthenticated
   end
 
   pipeline :admin_layout do
@@ -32,7 +27,7 @@ defmodule DegreeWeb.Router do
 
   # PROTECTED ADMIN ROUTES
   scope "/admin", DegreeWeb do
-    pipe_through([:protected, :auth, :admin_layout])
+    pipe_through([:browser, :guard, :protected, :admin_layout])
 
     get "/", AdminController, :index
     get "/pages", AdminController, :index_pages
@@ -43,14 +38,14 @@ defmodule DegreeWeb.Router do
 
   # PUBLIC ADMIN ROUTES
   scope "/admin", DegreeWeb do
-    pipe_through([:protected, :admin_layout])
+    pipe_through([:browser, :guard, :admin_layout])
 
     resources("/sessions", SessionController, only: [:new, :create])
   end
 
   # PUBLIC ROUTES
   scope "/", DegreeWeb do
-    pipe_through :browser
+    pipe_through [:browser, :guard]
 
     get "/", PageController, :index
     get "/*path", PageController, :dynamic

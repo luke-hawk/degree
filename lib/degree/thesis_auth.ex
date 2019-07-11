@@ -4,7 +4,9 @@ defmodule Degree.ThesisAuth do
   """
   @behaviour Thesis.Auth
 
-  def page_is_editable?(_conn) do
+  def page_is_editable?(conn) do
+    IO.inspect(Guardian.Plug.current_resource(conn))
+
   	true
   end
 end
