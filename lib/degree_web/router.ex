@@ -11,6 +11,10 @@ defmodule DegreeWeb.Router do
     plug(Coherence.Authentication.Session)
   end
 
+  pipeline :api do
+    plug :accepts, ["json"]
+  end
+
   pipeline :protected do
     plug(:accepts, ["html"])
     plug(:fetch_session)

@@ -5,7 +5,8 @@ defmodule Degree.ThesisAuth do
   @behaviour Thesis.Auth
 
   def page_is_editable?(conn) do
-  	true
-  	#conn |> Coherence.logged_in?
+  	conn
+  	|> IO.inspect(label: "Connection")
+  	|> Coherence.logged_in?
   end
 end
