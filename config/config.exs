@@ -29,6 +29,15 @@ config :phoenix, :json_library, Jason
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"
 
+# Configures Guardian
+config :degree, Degree.Auth.Guardian,
+  issuer: "degree",
+  secret_key: "HNinpKh9Ne3tr8BpjCpAEh0xzCqTIG3PWsfkR2AtzvUaRIpbs6oIQ9RcmjmGPekJ"
+
+config :degree, Degree.Auth.AuthAccessPipeline,
+  module: Degree.Auth.Guardian,
+  error_handler: Degree.Auth.AuthErrorHandler
+
 # Thesis Main Config
 config :thesis,
   store: Thesis.EctoStore,
