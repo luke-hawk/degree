@@ -2,9 +2,10 @@ defmodule Degree.Auth.AuthErrorHandler do
   @moduledoc false
 
   import Plug.Conn
+  import Phoenix.Controller, only: [redirect: 2]
 
-  def auth_error(conn, {type, _reason}, _opts) do
-    body = Poison.encode!(%{message: to_string(type)})
-    send_resp(conn, 401, body)
+  def auth_error(conn, {_type, _reason}, _opts) do
+  	conn
+      |> redirect(to: "/admin/sessions/new")
   end
 end
