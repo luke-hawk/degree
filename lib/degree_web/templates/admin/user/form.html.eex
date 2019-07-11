@@ -39,6 +39,15 @@
               <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-key"></i></span>
               </div>
+              <%= select f, :role, ["admin", "editor"], class: "form-control" %>
+            </div>
+            <%= error_tag f, :role %>
+          </div>
+          <div class="form-group">
+            <div class="input-group input-group-alternative">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-key"></i></span>
+              </div>
               <%= password_input f, :password, class: "form-control", placeholder: "Password" %>
             </div>
             <%= error_tag f, :email %>

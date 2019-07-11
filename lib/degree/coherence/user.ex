@@ -6,6 +6,7 @@ defmodule Degree.Coherence.User do
   schema "users" do
     field(:name, :string)
     field(:email, :string)
+    field(:role, :string)
     coherence_schema()
 
     timestamps()
@@ -15,7 +16,7 @@ defmodule Degree.Coherence.User do
   @spec changeset(Ecto.Schema.t(), Map.t()) :: Ecto.Changeset.t()
   def changeset(model, params \\ %{}) do
     model
-    |> cast(params, ~w(name email)a ++ coherence_fields())
+    |> cast(params, ~w(name email role)a ++ coherence_fields())
     |> validate_required([:name, :email])
     |> validate_format(:email, ~r/@/)
     |> unique_constraint(:email)

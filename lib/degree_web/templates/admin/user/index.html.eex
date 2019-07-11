@@ -29,7 +29,7 @@
                 </td>
                 <td>
                   <span class="badge badge-dot mr-4">
-                    <i class="bg-info"></i> Admin
+                    <i class="bg-info"></i> <%= user.role %>
                   </span>
                 </td>
                 <td class="text-right">
