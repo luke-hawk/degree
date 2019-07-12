@@ -59,7 +59,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/admin/published">
+                <a class="nav-link" href="/admin/publish">
                   <i class="fas fa-cloud-upload-alt"></i> Publish & Unpublish
                 </a>
               </li>

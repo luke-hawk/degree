@@ -32,6 +32,9 @@ defmodule DegreeWeb.Router do
     get "/", AdminController, :index
     get "/pages", Admin.PagesController, :index
     delete "/pages/:route_id", Admin.PagesController, :delete_page
+    get "/publish", Admin.PublishController, :index
+    put "/publish/:route_id/publish", Admin.PublishController, :publish
+    put "/publish/:route_id/unpublish", Admin.PublishController, :unpublish
     resources "/user", Admin.UserController, except: [:show]
     delete "/sessions", SessionController, :delete
   end
