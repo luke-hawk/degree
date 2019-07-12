@@ -2,7 +2,8 @@ defmodule DegreeWeb.Admin.UserController do
   use DegreeWeb, :controller
 
   alias Degree.Repo
-  alias Degree.Coherence.User
+  alias Degree.Accounts
+  alias Degree.Accounts.User
 
   def index(conn, _params) do
     users = User |> Repo.all
@@ -10,21 +11,19 @@ defmodule DegreeWeb.Admin.UserController do
   end
 
   def new(conn, _params) do
-    changeset = User.changeset(%User{})
+    changeset = Accounts.change_user_registration(%User{})
     render(conn, "new.html", changeset: changeset)
   end
 
-  def create(conn, %{"user" => user_params}) do
-    changeset = User.changeset(%User{}, user_params)
+   def create(conn, %{"user" => user_params}) do
+    case Accounts.create_user(user_params) do
+      {:ok, _user} ->
+        conn
+        |> put_flash(:info, "User created successfully.")
+        |> redirect(to: Routes.user_path(conn, :index))
 
-    if changeset.valid? do
-      Repo.insert(changeset)
-
-      conn
-      |> put_flash(:info, "User created successfully.")
-      |> redirect(to: Routes.user_path(conn, :index))
-    else
-      render(conn, "new.html", changeset: changeset)
+      {:error, %Ecto.Changeset{} = changeset} ->
+        render(conn, "new.html", changeset: changeset)
     end
   end
 
