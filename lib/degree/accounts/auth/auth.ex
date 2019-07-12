@@ -6,7 +6,6 @@ defmodule Degree.Auth do
   import Plug.Conn
 
   alias Degree.Auth.Guardian
-  alias Degree.Accounts
   alias Degree.Accounts.User
   alias Degree.Repo
 
@@ -25,7 +24,7 @@ defmodule Degree.Auth do
 
   def login(conn, user) do
     conn
-    |> Guardian.Plug.sign_in(user)
+    |> Guardian.Plug.sign_in(user, key: :admin)
     |> assign(:current_user, user)
     |> put_user_token(user)
   end

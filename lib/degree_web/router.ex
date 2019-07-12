@@ -18,7 +18,7 @@ defmodule DegreeWeb.Router do
   end
 
   pipeline :protected do
-    plug Guardian.Plug.EnsureAuthenticated
+    plug Guardian.Plug.EnsureAuthenticated, key: :admin
   end
 
   pipeline :admin_layout do
