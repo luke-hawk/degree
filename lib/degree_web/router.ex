@@ -30,8 +30,8 @@ defmodule DegreeWeb.Router do
     pipe_through([:browser, :guard, :protected, :admin_layout])
 
     get "/", AdminController, :index
-    get "/pages", AdminController, :index_pages
-    delete "/pages/:route_id", AdminController, :delete_page
+    get "/pages", Admin.PagesController, :index
+    delete "/pages/:route_id", Admin.PagesController, :delete_page
     resources "/user", Admin.UserController, except: [:show]
     delete "/sessions", SessionController, :delete
   end
@@ -47,7 +47,7 @@ defmodule DegreeWeb.Router do
   scope "/", DegreeWeb do
     pipe_through [:browser, :guard]
 
-    get "/", PageController, :index
-    get "/*path", PageController, :dynamic
+    get "/", WebPageController, :index
+    get "/*path", WebPageController, :dynamic
   end
 end
