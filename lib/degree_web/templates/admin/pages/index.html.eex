@@ -38,8 +38,8 @@
 	                <td class="text-right">
 	                  <div class="btn-group" role="group" aria-label="Basic example">
 	                  	<%= link("Edit", to: url, class: "btn btn-secondary btn-xs") %>
-						<%= if route.template do %>
-	                  		<%= link "Delete", to: Routes.admin_path(@conn, :delete_page, route), method: :delete, class: "btn btn-secondary btn-xs" %>
+						          <%= if route.template do %>
+	                  		<%= link "Delete", to: Routes.pages_path(@conn, :delete_page, route), method: :delete, class: "btn btn-secondary btn-xs" %>
 	                  	<% end %>
 	                  </div>
 	                </td>

@@ -1,4 +1,4 @@
-defmodule DegreeWeb.PageController do
+defmodule DegreeWeb.WebPageController do
   use DegreeWeb, :controller
 
   def index(conn, _params) do
