@@ -3,16 +3,15 @@ defmodule Degree.ThesisAuth do
   Contains functions for handling Thesis authorization.
   """
   import Plug.Conn
-  import Logger
 
   @behaviour Thesis.Auth
 
   def page_is_editable?(conn) do
     
     case verify_session(conn) do
-      {:ok, success} ->
+      {:ok, _success} ->
         true
-      {:error, error} ->
+      {:error, _error} ->
         false
     end
   end

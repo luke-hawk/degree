@@ -29,7 +29,7 @@ defmodule Thesis.Page do
     timestamps()
   end
 
-  @valid_attributes [:slug, :title, :description, :redirect_url, :template]
+  @valid_attributes [:slug, :title, :description, :redirect_url, :template, :published]
   @required_attributes [:slug]
 
   @doc """
@@ -54,7 +54,6 @@ defmodule Thesis.Page do
     |> cast(params, @valid_attributes)
     |> set_published_default()
     |> validate_required(@required_attributes)
-    
   end
 
   def set_published_default(changeset) do
