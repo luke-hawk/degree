@@ -41,7 +41,7 @@ config :thesis,
   uploader: Thesis.RepoUploader
 
 config :thesis, :dynamic_pages,
-  view: DegreeWeb.PageView,
+  view: DegreeWeb.WebPageView,
   templates: ["blog.html"],
   not_found_view: DegreeWeb.ErrorView,
   not_found_template: "404.html"

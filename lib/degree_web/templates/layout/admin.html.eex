@@ -55,7 +55,12 @@
             <ul class="navbar-nav mb-md-3">
               <li class="nav-item">
                 <a class="nav-link" href="/admin/pages">
-                  <i class="fas fa-file-invoice"></i> Manage
+                  <i class="fas fa-file-invoice"></i> Edit & Delete
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/admin/publish">
+                  <i class="fas fa-cloud-upload-alt"></i> Publish & Unpublish
                 </a>
               </li>
             </ul>

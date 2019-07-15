@@ -14,7 +14,7 @@
       <!-- Author / Date -->
 	  <%= content(@conn, "Blog Author", :html) do %>
 	      <p class="text-muted mt-5">
-	        von <a href="#">Schmaus.Community</a>
+	        von <a href="#">Degree</a>
 	      </p>
 	      <p class="text-muted">
 	        05.07.2019, 14:18 Uhr
