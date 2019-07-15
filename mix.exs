@@ -20,7 +20,7 @@ defmodule Degree.MixProject do
   def application do
     [
       mod: {Degree.Application, []},
-      extra_applications: [:logger, :runtime_tools, :thesis]
+      extra_applications: [:logger, :runtime_tools, :thesis, :sitemap]
     ]
   end
 
@@ -45,7 +45,8 @@ defmodule Degree.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:guardian, "~> 1.0"},
       {:argon2_elixir, "~> 2.0"},
-      {:thesis, "~> 0.3.4"}
+      {:thesis, "~> 0.3.4"},
+      {:sitemap, "~> 1.1"}
     ]
   end
 
