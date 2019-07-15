@@ -6,6 +6,13 @@ defmodule DegreeWeb.WebPageController do
   end
 
   def dynamic(conn, _params) do
-    render_dynamic(conn)
+  	if DegreeWeb.SessionController.logged_in?(conn) || conn.assigns.thesis_page.published do
+  		render_dynamic(conn)
+  	else
+  		conn
+	    |> put_status(:not_found)
+	    |> put_view(DegreeWeb.ErrorView)
+	    |> render(:"404")
+  	end
   end
 end

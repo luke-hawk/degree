@@ -25,4 +25,19 @@ defmodule DegreeWeb.SessionController do
     |> Degree.Auth.logout()
     |> redirect(to: Routes.web_page_path(conn, :index))
   end
+
+  def logged_in?(conn) do
+    case verify_session(conn) do
+      {:ok, _success} ->
+        true
+      {:error, _error} ->
+        false
+    end
+  end
+
+  defp verify_session(conn) do
+    conn
+    |> get_session(:guardian_admin_token)
+    |> Degree.Auth.Guardian.decode_and_verify
+  end
 end
