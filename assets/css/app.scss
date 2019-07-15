@@ -1,3 +1,4 @@
-@import "degree.scss"
-
-/* TODO: Compile two separate CSS -> one for degree and one for website */
+// Add your Website styles here. 
+// Webpack will compile admin related styles separated from app related styles
+// In order to use admin styles for your application uncomment:
+// @import "degree"

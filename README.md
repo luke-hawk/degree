@@ -21,12 +21,9 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
 
 
 ## TODO
-  - [ ] Fix auth problem
   - [ ] AWS image upload
-  - [ ] User roles
-  - [ ] Publish / unpublish page
-  - [x] Move User into Admin namespace
-  - [ ] I18n Support (somehow)
+  - [ ] I18n Support
+  - [x] Separate Styles for admin and website
   - [ ] Documentation
   - [ ] Templates through elixr releases?
   
