@@ -1,3 +1,3 @@
 defmodule DegreeWeb.WebPageViewTest do
-  use DegreeWeb.ConnCase, async: true
+  use DegreeWeb.ConnCase
 end
