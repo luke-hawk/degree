@@ -49,7 +49,7 @@ defmodule DegreeWeb.PageControllerTest do
       conn = post(conn, Routes.session_path(conn, :create), session: @params)
       page = page_fixture()
       conn = get(conn, "/blog/test-post")
-      assert html_response(conn, 200) =~ "Blog | Test"
+      assert html_response(conn, 200) =~ page.title
     end
   end
 end
