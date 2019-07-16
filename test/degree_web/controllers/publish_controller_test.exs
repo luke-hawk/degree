@@ -1,7 +1,7 @@
-defmodule DegreeWeb.PageControllerTest do
+defmodule DegreeWeb.PublishControllerTest do
   use DegreeWeb.ConnCase
 
-  describe "dynamic page controller" do
+  describe "publish controller" do
     alias Degree.Accounts
     alias Degree.Repo
 
@@ -27,29 +27,30 @@ defmodule DegreeWeb.PageControllerTest do
       page
     end
 
-  	test "GET /admin/pages", %{conn: conn} do
+  	test "GET /admin/publish", %{conn: conn} do
   		user_fixture()
   		conn = post(conn, Routes.session_path(conn, :create), session: @params)
       page = page_fixture()
-  		conn = get(conn, Routes.pages_path(conn, :index))
+  		conn = get(conn, Routes.publish_path(conn, :index))
       assert html_response(conn, 200) =~ page.slug
   	end
 
-    test "DELETE /admin/pages/:id", %{conn: conn} do
+    test "PUT /admin/publish/:route_id/publish", %{conn: conn} do
       user_fixture()
       conn = post(conn, Routes.session_path(conn, :create), session: @params)
       page = page_fixture()
-      conn = delete(conn, Routes.pages_path(conn, :delete_page, page.id))
-      assert get_flash(conn, :info) == "Page deleted successfully."
-      assert redirected_to(conn) == Routes.pages_path(conn, :index)
+      conn = put(conn, Routes.publish_path(conn, :publish, page.id), published: true)
+      assert get_flash(conn, :info) == "Page published successfully.."
+      assert redirected_to(conn) == Routes.publish_path(conn, :index)
     end
 
-    test "GET /*path", %{conn: conn} do
+    test "PUT /admin/publish/:route_id/unpublish", %{conn: conn} do
       user_fixture()
       conn = post(conn, Routes.session_path(conn, :create), session: @params)
       page = page_fixture()
-      conn = get(conn, "/blog/test-post")
-      assert html_response(conn, 200) =~ "Blog | Test"
+      conn = put(conn, Routes.publish_path(conn, :unpublish, page.id), published: false)
+      assert get_flash(conn, :info) == "Page unpublished successfully.."
+      assert redirected_to(conn) == Routes.publish_path(conn, :index)
     end
   end
 end
