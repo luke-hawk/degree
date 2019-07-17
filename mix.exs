@@ -1,66 +1,48 @@
-defmodule Degree.MixProject do
+defmodule Degree.Mixfile do
   use Mix.Project
 
+  @name    :degree
+  @version "0.1.0"
+
+  @deps [
+    { :mix_templates,  ">0.0.0",  app: false },
+    { :ex_doc,         ">0.0.0",  only: [:dev, :test] },
+  ]
+
+  @maintainers ["Lucas Habrich <25054@novasbe.pt>"]
+  @github      "https://github.com/luke-hawk/#{@name}"
+
+  @description """
+  An admin engine build around Thesis-CMS
+  """
+  
+  # ------------------------------------------------------------
+  
   def project do
+    in_production = Mix.env == :prod
     [
-      app: :degree,
-      version: "0.1.0",
-      elixir: "~> 1.5",
-      elixirc_paths: elixirc_paths(Mix.env()),
-      compilers: [:phoenix, :gettext] ++ Mix.compilers(),
-      start_permanent: Mix.env() == :prod,
-      aliases: aliases(),
-      deps: deps()
+      app:     @name,
+      version: @version,
+      deps:    @deps,
+      elixir:  "~> 1.5",
+      package: package(),
+      description:     @description,
+      build_embedded:  in_production,
+      start_permanent: in_production,
     ]
   end
 
-  # Configuration for the OTP application.
-  #
-  # Type `mix help compile.app` for more information.
-  def application do
+  defp package do
     [
-      mod: {Degree.Application, []},
-      extra_applications: [:logger, :runtime_tools, :thesis, :sitemap]
+      name:        @name,
+      files:       ["lib", "mix.exs", "README.md", "LICENSE.md", "template"],
+      maintainers: @maintainers,
+      licenses:    ["Apache 2.0"],
+      links:       %{
+        "GitHub" => @github,
+      },
+#      extra:       %{ "type" => "a_template_for_mix_gen" },
     ]
   end
-
-  # Specifies which paths to compile per environment.
-  defp elixirc_paths(:test), do: ["lib", "test/support"]
-  defp elixirc_paths(_), do: ["lib"]
-
-  # Specifies your project dependencies.
-  #
-  # Type `mix help deps` for examples and options.
-  defp deps do
-    [
-      {:phoenix, "~> 1.4.9"},
-      {:phoenix_pubsub, "~> 1.1"},
-      {:phoenix_ecto, "~> 4.0"},
-      {:ecto_sql, "~> 3.0"},
-      {:postgrex, ">= 0.0.0"},
-      {:phoenix_html, "~> 2.11"},
-      {:phoenix_live_reload, "~> 1.2", only: :dev},
-      {:gettext, "~> 0.11"},
-      {:jason, "~> 1.0"},
-      {:plug_cowboy, "~> 2.0"},
-      {:guardian, "~> 1.0"},
-      {:argon2_elixir, "~> 2.0"},
-      {:thesis, "~> 0.3.4"},
-      {:sitemap, "~> 1.1"}
-    ]
-  end
-
-  # Aliases are shortcuts or tasks specific to the current project.
-  # For example, to create, migrate and run the seeds file at once:
-  #
-  #     $ mix ecto.setup
-  #
-  # See the documentation for `Mix` for more info on aliases.
-  defp aliases do
-    [
-      "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
-      "ecto.reset": ["ecto.drop", "ecto.setup"],
-      test: ["ecto.create --quiet", "ecto.migrate", "test"]
-    ]
-  end
+  
 end
