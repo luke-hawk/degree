@@ -53,6 +53,7 @@ This will create a fresh phoenix application named `your_app` with all necessary
 * Create and migrate your database with `mix ecto.setup`
 * Install Node.js dependencies with `cd assets && npm install`
 * Start Phoenix endpoint with `mix phx.server`
+* Optionally you can run tests with `mix test`
 
 ## Usage
 
