@@ -10,7 +10,7 @@
   <h3 align="center">Degree · CMS</h3>
 
   <p align="center">
-    Degree is an <a href="https://pragdave.me/blog/2017/04/18/elixir-project-generator.html">Elixir project generator</a> which will get you a boilerplate phoenix application with authentication, an admin engine built around <a href="https://github.com/infinitered/thesis-phoenix">Thesis CMS</a> and other useful features such as dynamic page creation and publishing or dynamic sitemap generation.
+    Degree is an <a href="https://pragdave.me/blog/2017/04/18/elixir-project-generator.html">Elixir project generator</a> template which will get you a boilerplate phoenix application with authentication, an admin engine built around <a href="https://github.com/infinitered/thesis-phoenix">Thesis CMS</a> and other useful features such as dynamic page creation and publishing or dynamic sitemap generation.
     <br />
     <br />
     <a href="https://github.com/luke-hawk/degree">Read Docs</a>
