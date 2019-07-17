@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="col">
+    <div class="card shadow">
+      <div class="card-header border-0">
+        <h3 class="mb-0">Users</h3>
+      </div>
+      <div class="table-responsive">
+        <table class="table align-items-center table-flush">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Role</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+  			    <%%= for {user, _index} <- Enum.with_index(@users) do %>
+              <tr>
+                <td>
+                	<%%= user.id %>
+                </td>
+                <td>
+                  <%%= user.name %>
+                </td>
+                <td>
+                  <%%= user.email %>
+                </td>
+                <td>
+                  <span class="badge badge-dot mr-4">
+                    <i class="bg-info"></i> <%%= user.role %>
+                  </span>
+                </td>
+                <td class="text-right">
+                  <div class="btn-group" role="group" aria-label="Basic example">
+                    <%%= link "Edit", to: Routes.user_path(@conn, :edit, user), class: "btn btn-secondary btn-xs" %>
+                    <%%= link "Delete", to: Routes.user_path(@conn, :delete, user), method: :delete, class: "btn btn-secondary btn-xs" %>
+                  </div>
+                </td>
+              </tr>
+  	        <%% end %>
+          </tbody>
+        </table>
+      </div>
+      <div class="card-footer py-4">
+        <%%= link "New User", to: Routes.user_path(@conn, :new), class: "btn btn-default btn-xs" %>
+      </div>
+    </div>
+  </div>
+</div>

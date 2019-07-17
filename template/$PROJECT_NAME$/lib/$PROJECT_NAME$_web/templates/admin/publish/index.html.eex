@@ -1,0 +1,65 @@
+<div class="row">
+  <div class="col">
+    <div class="card shadow">
+      <div class="card-header border-0">
+        <h3 class="mb-0">Pages</h3>
+      </div>
+      <div class="table-responsive">
+        <table class="table align-items-center table-flush">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">Title</th>
+              <th scope="col">Used Template</th>
+              <th scope="col">Slug</th>
+              <th scope="col">Link</th>
+              <th scope="col">Last Update</th>
+              <th scope="col">Published</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+  			<%%= for {route, _index} <- Enum.with_index(@routes) do %>
+  			    <%% url = <%= @project_name_camel_case %>Web.Endpoint.url <> route.slug %>
+              	<tr>
+	                <td>
+	                  <%%= route.title %>
+	                </td>
+                  <td>
+                    <%%= route.template %>
+                  </td>
+	                <td>
+	                  <%%= route.slug %>
+	                </td>
+	                <td>
+	                  <a href="<%%= url %>">Visit</a>
+	                </td>
+	                <td>
+	                  <%%= route.updated_at %>
+	                </td>
+                  <td>
+                    <span class="badge badge-dot mr-4">
+                      <i class="bg-info"></i> <%%= route.published %>
+                    </span>
+                  </td>
+	                <td class="text-right">
+	                  <div class="btn-group" role="group" aria-label="Basic example">
+                      <%%= if route.template do %>
+                        <%%= if route.published do %>
+                          <%%= link "Unpublish", to: Routes.publish_path(@conn, :unpublish, route, published: :false), method: :put , class: "btn btn-secondary btn-xs" %>
+                        <%% else %>
+                          <%%= link "publish", to: Routes.publish_path(@conn, :publish, route, published: :true), method: :put, class: "btn btn-secondary btn-xs" %>
+  	                  	<%% end %>
+                      <%% end %>
+	                  </div>
+	                </td>
+              	</tr>
+  	        <%% end %>
+          </tbody>
+        </table>
+      </div>
+      <div class="card-footer py-4">
+        <%%= link "Edit & Delete Pages", to: "/admin/pages", class: "btn btn-default btn-xs" %>
+      </div>
+    </div>
+  </div>
+</div>
