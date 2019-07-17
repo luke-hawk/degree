@@ -1,0 +1,6 @@
+<%%= content(@conn, "test identifier", :html) do %>
+  <h1>Title</h1>
+  <p>
+    Here's my default description!
+  </p>
+<%% end %>
