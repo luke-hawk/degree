@@ -17,6 +17,10 @@ defmodule <%= @project_name_camel_case %>Web.Router do
     plug <%= @project_name_camel_case %>.Auth.Pipeline
   end
 
+  # pipeline :i18n do
+  #   plug <%= @project_name_camel_case %>Web.Plugs.SetLocale
+  # end
+
   pipeline :protected do
     plug Guardian.Plug.EnsureAuthenticated, key: :admin
   end
@@ -48,7 +52,11 @@ defmodule <%= @project_name_camel_case %>Web.Router do
 
   # PUBLIC ROUTES
   scope "/", <%= @project_name_camel_case %>Web do
-    pipe_through [:browser, :guard]
+    pipe_through [
+                  :browser, 
+                  :guard, 
+                  #:i18n
+                  ]
 
     get "/", WebPageController, :index
     get "/*path", WebPageController, :dynamic
